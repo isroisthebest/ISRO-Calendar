@@ -28,6 +28,6 @@ for launch in data['results']:
 
     calendar.events.add(event)
 
-with open('isro_launches.ics', 'w') as file:
+with open('docs/isro_launches.ics', 'w') as file:
     file.writelines(calendar.serialize_iter())
 
