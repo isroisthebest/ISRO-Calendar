@@ -24,7 +24,7 @@ for launch in data['results']:
         event.begin = str(launch['window_start']).replace('T', ' ').replace('Z', '')
         event.make_all_day()
     try:
-        event.description = f"[{launch['launch_service_provider']['name']}]\n{launch['rocket']['configuration']['full_name']}\n\n{launch['mission']['description']}"
+        event.description = f"[{launch['launch_service_provider']['name']}]\n{launch['rocket']['configuration']['full_name']}\n\n{launch['mission']['description'].replace('\r', '')}"
     except:
         event.description = f"[{launch['launch_service_provider']['name']}]\n{launch['rocket']['configuration']['full_name']}"
     
