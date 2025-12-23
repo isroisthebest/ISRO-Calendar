@@ -2,7 +2,7 @@ name: Update ISRO Calendar
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '38 * * * *'
   workflow_dispatch:
 
 permissions:
