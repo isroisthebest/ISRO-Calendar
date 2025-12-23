@@ -9,7 +9,7 @@ calendar.extra.append(ContentLine(name="X-PUBLISHED-TTL", value="PT1H"))
 calendar.extra.append(ContentLine(name="REFRESH-INTERVAL;VALUE=DURATION", value="PT1H"))
 
 
-base_url = 'https://lldev.thespacedevs.com/2.3.0/'
+base_url = 'https://ll.thespacedevs.com/2.3.0/'
 
 data = requests.get(base_url+'launches/upcoming', params={'mission__agency__ids':31}).json()
 
