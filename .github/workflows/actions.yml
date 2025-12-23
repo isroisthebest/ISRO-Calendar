@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --local user.name "Github Action"
           git config --local user.email "action@github.com"
-          git add isro_launches.ics
+          git add docs/isro_launches.ics
           git diff-index --quiet HEAD || git commit -m "Update calendar: $(date)"
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
