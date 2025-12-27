@@ -1,17 +1,22 @@
 import requests
 from ics import Calendar, Event
 from ics.grammar.parse import ContentLine
+import os
 
-calendar = Calendar()
-calendar.scale = 'Gregorian'
-calendar.extra.append(ContentLine(name="X-WR-CALNAME", value="ISRO Launches"))
-calendar.extra.append(ContentLine(name="X-PUBLISHED-TTL", value="PT1H"))
-calendar.extra.append(ContentLine(name="REFRESH-INTERVAL;VALUE=DURATION", value="PT1H"))
-
-
+calendar_path = 'docs/isro_launches.ics'
 base_url = 'https://ll.thespacedevs.com/2.3.0/'
 
-data = requests.get(base_url+'launches/upcoming', params={'format':'json', 'lsp__id':'31, 1051'}).json()
+if os.path.exists(calendar_path):
+    with open(calendar_path, 'r') as file:
+        calendar = Calendar(file.read())
+else:
+    calendar = Calendar()
+    calendar.scale = 'Gregorian'
+    calendar.extra.append(ContentLine(name="X-WR-CALNAME", value="ISRO Launches"))
+    calendar.extra.append(ContentLine(name="X-PUBLISHED-TTL", value="PT1H"))
+    calendar.extra.append(ContentLine(name="REFRESH-INTERVAL;VALUE=DURATION", value="PT1H"))
+
+data = requests.get(base_url+'launches/upcoming', params={'format':'json', 'lsp__id':'31,1051'}).json()
 
 for launch in data['results']:
     event = Event()
