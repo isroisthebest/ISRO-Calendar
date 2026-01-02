@@ -19,6 +19,10 @@ else:
 data = requests.get(base_url+'launches/upcoming', params={'format':'json', 'lsp__id':'31,1051'}).json()
 
 for launch in data['results']:
+    for event in calendar.events:
+        if launch['id'] == event.uid:
+            calendar.events.discard(event)
+            break
     event = Event()
     event.uid = launch['id']
     event.name = launch['name']
